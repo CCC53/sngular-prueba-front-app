@@ -8,9 +8,9 @@ export const FavoriteProvider = ({ children }: { children: React.ReactNode }) =>
     const [favorites, setFavorites] = useState<Character[]>([]);
     const [search, setSearch] = useState<string | null>(null);
 
-    const addOne = (char: Character) => setFavorites(prev => [...prev, char]);
+    const addOne = (char: Character) => setFavorites(prev => prev.some(c => c.id === char.id) ? prev : [...prev, char]);
     const removeOne = (char: Character) => setFavorites(prev => prev.filter(c => c.id !== char.id));
-    const exists = (char: Character) => favorites.includes(char);
+    const exists = (char: Character) => favorites.some(c => c.id === char.id);
 
     return (
         <FavoriteContext.Provider value={{ favorites, addOne, removeOne, exists, search, setSearch }}>

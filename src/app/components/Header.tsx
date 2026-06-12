@@ -54,23 +54,27 @@ export const Header = () => {
                             </Button>
                         )
                     }
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            backgroundColor: '#ecf2fe',
-                            borderRadius: '8px',
-                            px: 2,
-                            py: 0.5,
-                            flexGrow: 1,
-                            width: { xs: '100%', md: 'auto' },
-                            maxWidth: { xs: '100%', md: '500px' },
-                            order: { xs: 2, md: 3 },
-                        }}
-                    >
-                        <SearchIcon sx={{ color: '#888', mr: 1 }} />
-                        <InputBase onChange={(e) => setSearch(e.target.value)} placeholder="Buscar..." inputProps={{ 'aria-label': 'buscar' }} sx={{ width: '100%' }}/>
-                    </Box>
+                    {
+                        pathname !== "/favoritos" && (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    backgroundColor: '#ecf2fe',
+                                    borderRadius: '8px',
+                                    px: 2,
+                                    py: 0.5,
+                                    flexGrow: 1,
+                                    width: { xs: '100%', md: 'auto' },
+                                    maxWidth: { xs: '100%', md: '500px' },
+                                    order: { xs: 2, md: 3 },
+                                }}
+                            >
+                                <SearchIcon sx={{ color: '#888', mr: 1 }} />
+                                <InputBase onChange={(e) => setSearch(e.target.value)} placeholder="Buscar..." inputProps={{ 'aria-label': 'buscar' }} sx={{ width: '100%' }}/>
+                            </Box>
+                        )
+                    }
                 </Toolbar>
             </AppBar>
         </Box>

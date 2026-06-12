@@ -10,7 +10,7 @@ export const DetailsModal = ({ char, open, onClose }: { char: Character, open: b
     const genderColor = () => char.gender === "Male" ? 'primary' : char.status === 'Genderless' || char.status === 'unknown' ? 'warning' : 'error';
 
     return (
-        <Modal open={open} onClose={onClose}>
+        <Modal open={open}>
             <Box sx={{
                 position: 'absolute',
                 top: '50%',

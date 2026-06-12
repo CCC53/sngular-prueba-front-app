@@ -30,7 +30,7 @@ export default function RootLayout({
       <body>
         <FavoriteProvider>
           <Header/>
-          <main style={{ flexGrow: 1, width: '100%' }}>
+          <main style={{ flexGrow: 9, width: '100%' }}>
             {children}
           </main>
           <Footer/>
