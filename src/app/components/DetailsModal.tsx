@@ -6,8 +6,8 @@ import { Box, Chip, IconButton, Modal, Typography } from "@mui/material"
 export const DetailsModal = ({ char, open, onClose }: { char: Character, open: boolean, onClose: () => void }) => {
     if (!char) return null;
 
-    const statusColor = () => char.status === "Alive" ? 'primary' : char.status === 'Unknown' ? 'warning' : 'error';
-    const genderColor = () => char.gender === "Male" ? 'primary' : char.status === 'Genderless' || char.status === 'Unknown' ? 'warning' : 'error';
+    const statusColor = () => char.status === "Alive" ? 'primary' : char.status === 'unknown' ? 'warning' : 'error';
+    const genderColor = () => char.gender === "Male" ? 'primary' : char.status === 'Genderless' || char.status === 'unknown' ? 'warning' : 'error';
 
     return (
         <Modal open={open} onClose={onClose}>
