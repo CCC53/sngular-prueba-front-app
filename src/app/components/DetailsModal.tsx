@@ -11,8 +11,20 @@ export const DetailsModal = ({ char, open, onClose }: { char: Character, open: b
 
     return (
         <Modal open={open} onClose={onClose}>
-            <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, backgroundColor: '#ffffff',
-                borderRadius: '12px', overflow: 'hidden', boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.2)', outline: 'none'}}>
+            <Box sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: { xs: 'calc(100% - 32px)', sm: 400 },
+                maxWidth: '100%',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                backgroundColor: '#ffffff',
+                borderRadius: '12px',
+                boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.2)',
+                outline: 'none',
+            }}>
                 <IconButton onClick={onClose} size="small" sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'rgba(0,0,0,0.4)', color: '#fff' }}>
                     <CloseIcon fontSize="small"/>
                 </IconButton>

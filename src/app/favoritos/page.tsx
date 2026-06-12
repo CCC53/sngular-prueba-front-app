@@ -18,11 +18,29 @@ export default function Favoritos() {
     }
 
     return (
-        <Box sx={{ gap: 2, p: 2 }}>
+        <Box sx={{ gap: 2, p: { xs: 1.5, sm: 2 } }}>
             <Button variant="outlined" color="secondary" startIcon={<HomeIcon/>} onClick={goBack}>Volver</Button>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2, p: 3}}>
+            <Box sx={{
+                display: 'grid',
+                gridTemplateColumns: {
+                    xs: '1fr',
+                    sm: 'repeat(2, 1fr)',
+                    md: 'repeat(3, 1fr)',
+                    lg: 'repeat(4, 1fr)',
+                    xl: 'repeat(5, 1fr)',
+                },
+                gap: 2,
+                p: { xs: 1, sm: 3 },
+                maxWidth: 1600,
+                mx: 'auto',
+                width: '100%',
+            }}>
                 {
-                  favorites.length === 0 ? <NoData/> : favorites.map(item => (
+                  favorites.length === 0 ? (
+                    <Box sx={{ gridColumn: '1 / -1' }}>
+                        <NoData/>
+                    </Box>
+                  ) : favorites.map(item => (
                     <ListItem key={item.id} char={item} handleClick={setSelectedChar}/>
                   ))
                 }
