@@ -1,4 +1,3 @@
-
 export interface Character {
     id: number;
     name: string;
@@ -18,4 +17,21 @@ export interface Character {
     episode: string[];
     url: string;
     created: string;
+}
+
+export interface ResponseListCharacter {
+    info: {
+        count: number;
+        pages: number;
+        next: string;
+        prev: string;
+    }
+    results: Character[];
+}
+
+export interface FavoriteContextType {
+    favorites: Character[];
+    addOne: (char: Character) => void;
+    removeOne: (char: Character) => void;
+    exists: (char: Character) => boolean;
 }
