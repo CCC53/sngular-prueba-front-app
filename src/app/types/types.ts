@@ -34,4 +34,6 @@ export interface FavoriteContextType {
     addOne: (char: Character) => void;
     removeOne: (char: Character) => void;
     exists: (char: Character) => boolean;
+    search: string | null;
+    setSearch: (val: string) => void;
 }
