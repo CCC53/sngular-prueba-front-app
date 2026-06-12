@@ -1,13 +1,10 @@
 import Image from "next/image";
 import { Character } from "../types/types";
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Chip, IconButton, Modal, Typography } from "@mui/material"
+import { Box, Button, Chip, Modal, Typography } from "@mui/material"
 
 export const DetailsModal = ({ char, open, onClose }: { char: Character, open: boolean, onClose: () => void }) => {
     if (!char) return null;
-
-    const statusColor = () => char.status === "Alive" ? 'primary' : char.status === 'unknown' ? 'warning' : 'error';
-    const genderColor = () => char.gender === "Male" ? 'primary' : char.status === 'Genderless' || char.status === 'unknown' ? 'warning' : 'error';
 
     return (
         <Modal open={open}>
@@ -25,33 +22,37 @@ export const DetailsModal = ({ char, open, onClose }: { char: Character, open: b
                 boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.2)',
                 outline: 'none',
             }}>
-                <IconButton onClick={onClose} size="small" sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'rgba(0,0,0,0.4)', color: '#fff' }}>
-                    <CloseIcon fontSize="small"/>
-                </IconButton>
-                <Image src={char.image} alt="Nombre" width={300} height={300} style={{ width: '100%', height: 'auto', display: 'block' }}/>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: 1, pt: 1 }}>
+                    <Button onClick={onClose} size="small" color="error" endIcon={<CloseIcon fontSize="small" />}>
+                        Cerrar
+                    </Button>
+                </Box>
+                <Box sx={{ px: 2 }}>
+                    <Image src={char.image} alt="Nombre" width={300} height={300} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }}/>
+                </Box>
                 <Box sx={{ px: 3, py: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Typography sx={{ marginBottom: '1em' }} variant="h5">{char.name}</Typography>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <Typography variant="body2">Status: </Typography>
-                            <Chip label={char.status} color={statusColor()}/>
-                        </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <Typography variant="body2">Gender: </Typography>
-                            <Chip label={char.gender} color={genderColor()}/>
-                        </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <Typography variant="body2">Specie: </Typography>
-                            <Chip label={char.species} color="secondary"/>
-                        </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <Typography variant="body2">Origin: </Typography>
-                            <Chip label={char.origin.name} color="success"/>
-                        </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <Typography variant="body2">Location: </Typography>
-                            <Chip label={char.location.name} color="info" />
-                        </Box>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, justifyContent: 'center', width: '100%' }}>
+                        <Chip
+                            color="primary"
+                            label={<Typography variant="body2" component="span">Estado: {char.status}</Typography>}
+                        />
+                        <Chip
+                            color="secondary"
+                            label={<Typography variant="body2" component="span">Género: {char.gender}</Typography>}
+                        />
+                        <Chip
+                            color="success"
+                            label={<Typography variant="body2" component="span">Especie: {char.species}</Typography>}
+                        />
+                        <Chip
+                            color="warning"
+                            label={<Typography variant="body2" component="span">Origen: {char.origin.name}</Typography>}
+                        />
+                        <Chip
+                            color="error"
+                            label={<Typography variant="body2" component="span">Ubicación: {char.location.name}</Typography>}
+                        />
                     </Box>
                 </Box>
             </Box>

@@ -8,12 +8,14 @@ import { NoData } from "./components/NoData";
 import { Loader } from "./components/Loader";
 import { DetailsModal } from "./components/DetailsModal";
 import { useFavoriteContext } from "./context/FavoriteContext";
+import { storage } from "./utils/storage";
 import axios from "axios";
 
 export default function Home() {
   const { search } = useFavoriteContext();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [pageHydrated, setPageHydrated] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [selectedChar, setSelectedChar] = useState<Character | null>(null);
   const [loading, setLoading] = useState(true);
@@ -36,6 +38,16 @@ export default function Home() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    setPage(storage.getHomePage());
+    setPageHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!pageHydrated) return;
+    storage.setHomePage(page);
+  }, [page, pageHydrated]);
 
   useEffect(() => {
     getCharacters();
